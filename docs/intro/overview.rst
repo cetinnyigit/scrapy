@@ -1,7 +1,7 @@
 .. _intro-overview:
 
 ==================
-Scrapy at a glance
+Bir bakışta Scrapy
 ==================
 
 Scrapy (/ˈskreɪpaɪ/) is an application framework for crawling web sites and extracting
