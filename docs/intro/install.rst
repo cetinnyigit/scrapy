@@ -23,37 +23,26 @@ Alternatif olarak, Python paketlerinin kurulumuna zaten aşina iseniz, Scrapy'yi
 
     pip install Scrapy
 
-We strongly recommend that you install Scrapy in :ref:`a dedicated virtualenv <intro-using-virtualenv>`,
-to avoid conflicting with your system packages.
-
-Note that sometimes this may require solving compilation issues for some Scrapy
-dependencies depending on your operating system, so be sure to check the
-:ref:`intro-install-platform-notes`.
-
-For more detailed and platform specifics instructions, as well as
-troubleshooting information, read on.
 
 
-Things that are good to know
+Bilmenizde Fayda Var 
 ----------------------------
 
-Scrapy is written in pure Python and depends on a few key Python packages (among others):
+Scrapy, saf Python ile yazılmıştır ve birkaç temel Python paketine bağlıdır:
 
-* `lxml`_, an efficient XML and HTML parser
-* `parsel`_, an HTML/XML data extraction library written on top of lxml,
-* `w3lib`_, a multi-purpose helper for dealing with URLs and web page encodings
-* `twisted`_, an asynchronous networking framework
-* `cryptography`_ and `pyOpenSSL`_, to deal with various network-level security needs
+* `lxml`_, verimli bir XML ve HTML ayrıştırıcısı
+* `parsel`_, lxml üzerine yazılmış bir HTML/XML veri çıkarma kitaplığı,
+* `w3lib`_, URL'ler ve web sayfası kodlamalarıyla ilgilenmek için çok amaçlı bir yardımcı
+* `twisted`_, asenkron bir ağ framework’ü
+* `cryptography`_ and `pyOpenSSL`_, Çeşitli ağ düzeyinde güvenlik ihtiyaçlarıyla başa çıkmak için 
 
-The minimal versions which Scrapy is tested against are:
+Scrapy'nin test edildiği minimal sürümler şunlardır:
 
 * Twisted 14.0
 * lxml 3.4
 * pyOpenSSL 0.14
 
-Scrapy may work with older versions of these packages
-but it is not guaranteed it will continue working
-because it’s not being tested against them.
+Scrapy, bu paketlerin eski sürümleriyle çalışabilir, ancak bunlara karşı test edilmediğinden çalışmaya devam edeceği garanti edilmez.
 
 Some of these packages themselves depends on non-Python packages
 that might require additional installation steps depending on your platform.
@@ -70,7 +59,7 @@ please refer to their respective installation instructions:
 
 .. _intro-using-virtualenv:
 
-Using a virtual environment (recommended)
+Sanal Ortam Kullanma (Önerilir)
 -----------------------------------------
 
 TL;DR: We recommend installing Scrapy inside a virtual environment
@@ -79,11 +68,11 @@ on all platforms.
 Python packages can be installed either globally (a.k.a system wide),
 or in user-space. We do not recommend installing Scrapy system wide.
 
-Instead, we recommend that you install Scrapy within a so-called
-"virtual environment" (:mod:`venv`).
-Virtual environments allow you to not conflict with already-installed Python
-system packages (which could break some of your system tools and scripts),
-and still install packages normally with ``pip`` (without ``sudo`` and the likes).
+
+Scrapy'yi tüm platformlarda sanal bir ortama kurmanızı öneririz.
+Python paketleri, global olarak (yani sistem genelinde) veya kullanıcı alanında kurulabilir. Scrapy sistemini geniş bir alana kurmanızı önermiyoruz.
+Bunun yerine, Scrapy'yi "sanal ortam" ( venv) olarak adlandırılan bir ortama kurmanızı öneririz. Sanal ortamlar, önceden kurulmuş Python sistem paketleriyle (bazı sistem araçlarınızı ve komut dosyalarınızı bozabilir) çakışmamanıza ve yine de paketleri normal olarak pip yüklemenize izin verir.
+
 
 See :ref:`tut-venv` on how to create your virtual environment.
 
@@ -95,7 +84,7 @@ below for non-Python dependencies that you may need to install beforehand).
 
 .. _intro-install-platform-notes:
 
-Platform specific installation notes
+Platforma Özel Kurulum Notları
 ====================================
 
 .. _intro-install-windows:
@@ -103,52 +92,46 @@ Platform specific installation notes
 Windows
 -------
 
-Though it's possible to install Scrapy on Windows using pip, we recommend you
-to install `Anaconda`_ or `Miniconda`_ and use the package from the
-`conda-forge`_ channel, which will avoid most installation issues.
+Scrapy'yi Windows'a pip kullanarak kurmak mümkün olsa da Anaconda veya Miniconda'yı kurmanızı ve çoğu kurulum sorununu ortadan kaldıracak olan paketi conda-forge kanalından kullanmanızı öneririz.
 
 Once you've installed `Anaconda`_ or `Miniconda`_, install Scrapy with::
 
   conda install -c conda-forge scrapy
 
-To install Scrapy on Windows using ``pip``:
+Windows’a "pip" kullanarak Scrapy yüklemek için;
 
 .. warning::
-    This installation method requires “Microsoft Visual C++” for installing some 
-    Scrapy dependencies, which demands significantly more disk space than Anaconda.
+   Bu yükleme yöntemi, Anaconda’dan önemli ölçüde daha fazla disk alanı 
+   gerektiren bazı Scrapy bağımlılıklarını yüklemek için “Microsoft Visual C++” gerektirir.
 
-#. Download and execute `Microsoft C++ Build Tools`_ to install the Visual Studio Installer.
+#. Visual Studio Installer'ı yüklemek için Microsoft C++ Build Tools'u indirin ve çalıştırın.
 
-#. Run the Visual Studio Installer.
+#. Visual Studio Installer'ı çalıştırın.
 
-#. Under the Workloads section, select **C++ build tools**.
+#. İş Yükleri bölümünün altında, **C++** build tools öğesini seçin.
 
-#. Check the installation details and make sure following packages are selected as optional components:
+#. Kurulum ayrıntılarını kontrol edin ve isteğe bağlı bileşenler olarak aşağıdaki paketlerin seçildiğinden emin olun:
 
     * **MSVC**  (e.g MSVC v142 - VS 2019 C++ x64/x86 build tools (v14.23) )
     
     * **Windows SDK**  (e.g Windows 10 SDK (10.0.18362.0))
 
-#. Install the Visual Studio Build Tools.
+#. Visual Studio Build Tools yükleyin.
 
-Now, you should be able to :ref:`install Scrapy <intro-install-scrapy>` using ``pip``.
+Şimdi pip kullanarak Scrapy yükleyebilirsiniz.
 
 .. _intro-install-ubuntu:
 
-Ubuntu 14.04 or above
+Ubuntu 14.04 Veya Üzeri
 ---------------------
 
-Scrapy is currently tested with recent-enough versions of lxml,
-twisted and pyOpenSSL, and is compatible with recent Ubuntu distributions.
-But it should support older versions of Ubuntu too, like Ubuntu 14.04,
-albeit with potential issues with TLS connections.
+Scrapy şu anda lxml, twisted ve pyOpenSSL'nin yeterince yeni sürümleriyle test edilmiştir ve en son Ubuntu dağıtımlarıyla uyumludur. 
+Ancak TLS bağlantılarıyla ilgili olası sorunlara rağmen Ubuntu 14.04 gibi eski Ubuntu sürümlerini de desteklemesi gerekir.
 
-**Don't** use the ``python-scrapy`` package provided by Ubuntu, they are
-typically too old and slow to catch up with latest Scrapy.
+Ubuntu tarafından sağlanan python-scrapy paketini **kullanmayın**, genellikle çok eskidirler ve en son Scrapy'yi yakalamak için yavaştırlar.
 
 
-To install Scrapy on Ubuntu (or Ubuntu-based) systems, you need to install
-these dependencies::
+Scrapy'yi Ubuntu (veya Ubuntu tabanlı) sistemlere kurmak için şu bağımlılıkları kurmanız gerekir::
 
     sudo apt-get install python3 python3-dev python3-pip libxml2-dev libxslt1-dev zlib1g-dev libffi-dev libssl-dev
 
@@ -162,8 +145,7 @@ you can install Scrapy with ``pip`` after that::
     pip install scrapy
 
 .. note::
-    The same non-Python dependencies can be used to install Scrapy in Debian
-    Jessie (8.0) and above.
+    Aynı Python dışı bağımlılıklar, Scrapy’yi Debian Jessie (8.0) ve üzeri sürümlere kurmak için kullanılabilir
 
 
 .. _intro-install-macos:
@@ -171,21 +153,16 @@ you can install Scrapy with ``pip`` after that::
 macOS
 -----
 
-Building Scrapy's dependencies requires the presence of a C compiler and
-development headers. On macOS this is typically provided by Apple’s Xcode
-development tools. To install the Xcode command line tools open a terminal
-window and run::
+Scrapy'nin bağımlılıklarını oluşturmak, bir C derleyicisinin ve geliştirme başlıklarının varlığını gerektirir. macOS'ta bu, genellikle Apple'ın Xcode geliştirme araçları tarafından sağlanır. Xcode komut satırı araçlarını kurmak için bir terminal penceresi açın ve şunu çalıştırın::
 
     xcode-select --install
 
-There's a `known issue <https://github.com/pypa/pip/issues/2468>`_ that
-prevents ``pip`` from updating system packages. This has to be addressed to
-successfully install Scrapy and its dependencies. Here are some proposed
-solutions:
+Pip'in sistem paketlerini güncellemesini engelleyen bilinen bir sorun var
+Scrapy ve bağımlılıklarını başarıyla kurmak için bu sorunun ele alınması gerekir.
+İşte önerilen bazı çözümler:
 
-* *(Recommended)* **Don't** use system python, install a new, updated version
-  that doesn't conflict with the rest of your system. Here's how to do it using
-  the `homebrew`_ package manager:
+
+* *•	(Önerilen) Sistem python'u **kullanmayın**, sisteminizin geri kalanıyla çakışmayan yeni, güncellenmiş bir sürüm yükleyin.
 
   * Install `homebrew`_ following the instructions in https://brew.sh/
 
@@ -208,13 +185,10 @@ solutions:
 
       brew update; brew upgrade python
 
-*   *(Optional)* :ref:`Install Scrapy inside a Python virtual environment
-    <intro-using-virtualenv>`.
+*   * (İsteğe bağlı) Scrapy'yi bir Python sanal ortamına kurun.
 
-  This method is a workaround for the above macOS issue, but it's an overall
-  good practice for managing dependencies and can complement the first method.
 
-After any of these workarounds you should be able to install Scrapy::
+Bu geçici çözümlerden herhangi birinin ardından, Scrapy'yi yükleyebilmelisiniz::
 
   pip install Scrapy
 
@@ -222,18 +196,13 @@ After any of these workarounds you should be able to install Scrapy::
 PyPy
 ----
 
-We recommend using the latest PyPy version. The version tested is 5.9.0.
-For PyPy3, only Linux installation was tested.
+En son PyPy sürümünü kullanmanızı öneririz. 
+Test edilen sürüm 5.9.0'dır. PyPy3 için sadece Linux kurulumu test edilmiştir.
 
-Most Scrapy dependencies now have binary wheels for CPython, but not for PyPy.
-This means that these dependencies will be built during installation.
-On macOS, you are likely to face an issue with building Cryptography dependency,
-solution to this problem is described
-`here <https://github.com/pyca/cryptography/issues/2692#issuecomment-272773481>`_,
-that is to ``brew install openssl`` and then export the flags that this command
-recommends (only needed when installing Scrapy). Installing on Linux has no special
-issues besides installing build dependencies.
-Installing Scrapy with PyPy on Windows is not tested.
+Çoğu Scrapy bağımlılığında artık CPython için ikili tekerlekler bulunur, ancak PyPy için yoktur. 
+Bu, bu bağımlılıkların kurulum sırasında oluşturulacağı anlamına gelir. macOS'ta, Şifreleme bağımlılığı oluşturmayla ilgili bir sorunla karşılaşmanız olasıdır, 
+bu sorunun çözümü burada açıklanmıştır, yani bu komutun önerdiği bayrakları dışa aktarmak (yalnızca Scrapy'yi yüklerken gereklidir). 
+Linux'a yüklemenin, derleme bağımlılıkları kurmanın yanı sıra özel bir sorunu yoktur. Windows'ta Scrapy'yi PyPy ile kurmak test edilmemiştir. 
 
 You can check that Scrapy is installed correctly by running ``scrapy bench``.
 If this command gives errors such as
