@@ -1,32 +1,25 @@
 .. _intro-install:
 
 ==================
-Installation guide
+Yükleme Rehberi
 ==================
 
 .. _faq-python-versions:
 
-Supported Python versions
+Desteklenen Python Sürümleri
 =========================
-
-Scrapy requires Python 3.6+, either the CPython implementation (default) or
-the PyPy 7.2.0+ implementation (see :ref:`python:implementations`).
-
+Scrapy, CPython uygulaması veya PyPy 7.2.0+ uygulaması olan Python 3.6+ gerektirir.
 .. _intro-install-scrapy:
 
-Installing Scrapy
+Scrapy'yi Yükleme
 =================
+Anaconda veya Miniconda kullanıyorsanız, paketi Linux, Windows ve macOS için güncel paketlerin bulunduğu conda-forge kanalından yükleyebilirsiniz.
 
-If you're using `Anaconda`_ or `Miniconda`_, you can install the package from
-the `conda-forge`_ channel, which has up-to-date packages for Linux, Windows
-and macOS.
-
-To install Scrapy using ``conda``, run::
+Scrapy'yi yüklemek için conda’yı açın ve şu kodu çalıştırın:
 
   conda install -c conda-forge scrapy
 
-Alternatively, if you’re already familiar with installation of Python packages,
-you can install Scrapy and its dependencies from PyPI with::
+Alternatif olarak, Python paketlerinin kurulumuna zaten aşina iseniz, Scrapy'yi ve bağımlılıklarını PyPI'den şu şekilde kurabilirsiniz:
 
     pip install Scrapy
 
