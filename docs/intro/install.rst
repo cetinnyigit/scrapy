@@ -213,14 +213,13 @@ To fix this issue, run ``pip install 'PyPyDispatcher>=2.1.0'``.
 
 .. _intro-install-troubleshooting:
 
-Troubleshooting
+Sorun Giderme
 ===============
 
 AttributeError: 'module' object has no attribute 'OP_NO_TLSv1_1'
 ----------------------------------------------------------------
 
-After you install or upgrade Scrapy, Twisted or pyOpenSSL, you may get an
-exception with the following traceback::
+Scrapy, Twisted veya py Open SSL'i yükledikten veya yükselttikten sonra aşağıdaki geri dönüşle bir istisna elde edebilirsiniz::
 
     […]
       File "[…]/site-packages/twisted/protocols/tls.py", line 63, in <module>
@@ -229,11 +228,11 @@ exception with the following traceback::
         TLSVersion.TLSv1_1: SSL.OP_NO_TLSv1_1,
     AttributeError: 'module' object has no attribute 'OP_NO_TLSv1_1'
 
-The reason you get this exception is that your system or virtual environment
-has a version of pyOpenSSL that your version of Twisted does not support.
+Bu istisnayı elde etmenizin nedeni, sisteminizin veya sanal ortamınızın Twisted sürümünüzün 
+desteklemediği bir py Open SSL sürümüne sahip olmasıdır.
 
-To install a version of pyOpenSSL that your version of Twisted supports,
-reinstall Twisted with the :code:`tls` extra option::
+Twisted sürümünüzün desteklediği py Open SSL sürümünü yüklemek için,
+:code:`tls` ekstra seçeneğiyle Twisted uygulamasını yeniden yükleyin::
 
     pip install twisted[tls]
 
