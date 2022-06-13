@@ -9,7 +9,7 @@ Yükleme Rehberi
 Desteklenen Python Sürümleri
 =========================
 Scrapy, CPython uygulaması veya PyPy 7.2.0+ uygulaması olan Python 3.6+ gerektirir.
-.. _intro-install-scrapy:
+
 
 Scrapy'yi Yükleme
 =================
