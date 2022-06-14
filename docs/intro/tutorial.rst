@@ -44,7 +44,7 @@ Proje oluşturma
 ==================
 
 Kazımaya başlamadan önce yeni bir Scrapy projesi kurmanız gerekecek. Girin
-kodunuzu saklamak ve çalıştırmak istediğiniz dizin:
+kodunuzu saklamak ve çalıştırmak istediğiniz dizin::
 
     scrapy startproject tutorial
 
@@ -73,7 +73,7 @@ Bu, aşağıdaki içeriği içeren bir eğitim dizini oluşturur:
 
 Spiderlar, tanımladığınız ve Scrapy'nin bir web sitesinden (veya bir grup web sitesinden) bilgi kazımak için kullandığı sınıflardır. Spider sınıfını alt sınıflandırmalı ve yapılacak ilk istekleri, isteğe bağlı olarak sayfalardaki bağlantıları nasıl takip edeceklerini ve veri çıkarmak için indirilen sayfa içeriğinin nasıl ayrıştırılacağını tanımlamalıdırlar.
 
-Bu ilk Spider'ımızın kodu. Projenizdeki Tutorial/Spiders dizininin altındaki quotes_spider.py adlı bir dosyaya kaydedin:
+Bu ilk Spider'ımızın kodu. Projenizdeki Tutorial/Spiders dizininin altındaki quotes_spider.py adlı bir dosyaya kaydedin::
 
     import scrapy
 
