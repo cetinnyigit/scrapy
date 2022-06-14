@@ -48,7 +48,7 @@ kodunuzu saklamak ve çalıştırmak istediğiniz dizin::
 
     scrapy startproject tutorial
 
-Bu, aşağıdaki içeriği içeren bir eğitim dizini oluşturur:
+Bu, aşağıdaki içeriği içeren bir eğitim dizini oluşturur::
 
     tutorial/
         scrapy.cfg            # deploy configuration file
@@ -110,12 +110,12 @@ parse () yöntemi genellikle yanıtı ayrıştırır, kazınmış verileri dikte
 Spider'ımızı nasıl çalıştırırız
 ---------------------
 
-Spider'ımızı işe koymak için projenin en üst düzey dizinine gidin ve çalıştırın:
+Spider'ımızı işe koymak için projenin en üst düzey dizinine gidin ve çalıştırın::
 
    scrapy crawl quotes
 
 Bu komut, Spider'ı az önce eklediğimiz ve quotes.toscrape.com alan adı için bazı 
-istekler gönderecek isim alıntılarıyla çalıştırır. Buna benzer bir çıktı alacaksınız:
+istekler gönderecek isim alıntılarıyla çalıştırır. Buna benzer bir çıktı alacaksınız::
 
     ... (omitted for brevity)
     2016-12-16 21:24:05 [scrapy.core.engine] INFO: Spider opened
@@ -143,7 +143,7 @@ Scrapy programlar. Spider'ın start_requests yöntemiyle iade edilen nesneleri i
 
 start_requests yönteminin kısayolu
 ---------------------------------------
-Scrapy oluşturan bir start_requests () yöntemi uygulamak yerine. URL'lerden nesne isteyin, sadece URL'lerin listesiyle bir start_urls sınıfı niteliği tanımlayabilirsiniz. Bu liste daha sonra Spider'ımızın için ilk istekleri oluşturmak üzere varsayılan start_requests () uygulamasıyla kullanılacaktır:
+Scrapy oluşturan bir start_requests () yöntemi uygulamak yerine. URL'lerden nesne isteyin, sadece URL'lerin listesiyle bir start_urls sınıfı niteliği tanımlayabilirsiniz. Bu liste daha sonra Spider'ımızın için ilk istekleri oluşturmak üzere varsayılan start_requests () uygulamasıyla kullanılacaktır::
 
     import scrapy
 
@@ -167,7 +167,7 @@ Parse () yöntemi, Scrapy'ye bunu açıkça söylememiş olsak da, bu URL'lerin 
 Veri çıkarma
 ---------------
 
-Scrapy ile veri çıkarmayı öğrenmenin en iyi yolu, Scrapy Shell kullanarak seçicileri denemektir. Çalıştır:
+Scrapy ile veri çıkarmayı öğrenmenin en iyi yolu, Scrapy Shell kullanarak seçicileri denemektir. Çalıştır::
 
     scrapy shell 'http://quotes.toscrape.com/page/1/'
 
@@ -175,11 +175,11 @@ Scrapy ile veri çıkarmayı öğrenmenin en iyi yolu, Scrapy Shell kullanarak s
 
    Scrapy kabuğunu komut satırından çalıştırırken url'leri her zaman tırnak içinde kapatmayı unutmayın, aksi takdirde argümanlar içeren urls (yani karakter) çalışmaz.
 
-Windows'ta bunun yerine çift tırnak kullanın:
+Windows'ta bunun yerine çift tırnak kullanın::
 
        scrapy shell "http://quotes.toscrape.com/page/1/"
 
-Şöyle bir şey göreceksiniz:
+Şöyle bir şey göreceksiniz::
 
     [ ... Scrapy log here ... ]
     2016-09-19 12:09:27 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://quotes.toscrape.com/page/1/> (referer: None)
@@ -196,7 +196,7 @@ Windows'ta bunun yerine çift tırnak kullanın:
     [s]   fetch(req_or_url) Fetch request (or URL) and update local objects
     [s]   view(response)    View response in a browser
 
-Kabuğu kullanarak, yanıt nesnesiyle CSS kullanarak öğeleri seçmeyi deneyebilirsiniz:
+Kabuğu kullanarak, yanıt nesnesiyle CSS kullanarak öğeleri seçmeyi deneyebilirsiniz::
 
 .. invisible-code-block: python
 
@@ -207,22 +207,22 @@ Kabuğu kullanarak, yanıt nesnesiyle CSS kullanarak öğeleri seçmeyi deneyebi
 
 Response.css ('başlık') çalıştırmanın sonucu, XML/HTML öğelerinin etrafını saran ve seçimi ince taneli hale getirmek veya verileri ayıklamak için daha fazla sorgu çalıştırmanıza izin veren Selector List adlı liste benzeri bir nesnedir.
 
-Metni yukarıdaki başlıktan çıkarmak için şunları yapabilirsiniz:
+Metni yukarıdaki başlıktan çıkarmak için şunları yapabilirsiniz::
 
 >>> response.css('title::text').getall()
 ['Quotes to Scrape']
 
-Burada dikkat edilmesi gereken iki şey vardır: birincisi ekledik: CSS sorgusuna metin, yani yalnızca < başlık > öğenin içindeki metin öğelerini doğrudan seçmek istiyoruz. Belirtmezsek: metin, etiketleri de dahil olmak üzere başlık öğesinin tamamını alırız:
+Burada dikkat edilmesi gereken iki şey vardır: birincisi ekledik: CSS sorgusuna metin, yani yalnızca < başlık > öğenin içindeki metin öğelerini doğrudan seçmek istiyoruz. Belirtmezsek: metin, etiketleri de dahil olmak üzere başlık öğesinin tamamını alırız::
 
 >>> response.css('title').getall()
 ['<title>Quotes to Scrape</title>']
 
-Diğer bir şey, .getall () çağrısının sonucunun bir liste olmasıdır: bir seçicinin birden fazla sonuç döndürmesi mümkündür, bu yüzden hepsini çıkarırız. Sadece ilk sonucu istediğinizi bildiğinizde, bu durumda olduğu gibi, şunları yapabilirsiniz:
+Diğer bir şey, .getall () çağrısının sonucunun bir liste olmasıdır: bir seçicinin birden fazla sonuç döndürmesi mümkündür, bu yüzden hepsini çıkarırız. Sadece ilk sonucu istediğinizi bildiğinizde, bu durumda olduğu gibi, şunları yapabilirsiniz::
 
 >>> response.css('title::text').get()
 'Quotes to Scrape'
 
-Alternatif olarak şöyle yazabilirdiniz:
+Alternatif olarak şöyle yazabilirdiniz::
 
 >>> response.css('title::text')[0].get()
 'Quotes to Scrape'
@@ -234,13 +234,13 @@ Bir SelectorList örneğinde bir dizine erişmek, sonuç yoksa Index Error istis
     ...
     IndexError: list index out of range
 
-Bunun yerine doğrudan SelectorList örneğinde .get () kullanmak isteyebilirsiniz, bu da sonuç yoksa Yok'u döndürür:
+Bunun yerine doğrudan SelectorList örneğinde .get () kullanmak isteyebilirsiniz, bu da sonuç yoksa Yok'u döndürür::
 
 >>> response.css("noelement").get()
 
 Burada bir ders var: çoğu kazıma kodu için, bir sayfada bulunmayan şeyler nedeniyle hatalara dayanıklı olmasını istersiniz, böylece bazı parçalar kazınmasa bile en azından bazı veriler alabilirsiniz.
 
-getall () ve get () yöntemlerinin yanı sıra, normal ifadeleri kullanarak ayıklamak için re () yöntemini de kullanabilirsiniz:
+getall () ve get () yöntemlerinin yanı sıra, normal ifadeleri kullanarak ayıklamak için re () yöntemini de kullanabilirsiniz::
 
 >>> response.css('title::text').re(r'Quotes.*')
 ['Quotes to Scrape']
@@ -259,7 +259,7 @@ Seçici Gadget, birçok tarayıcıda çalışan görsel olarak seçilmiş öğel
 XPath: kısa bir giriş
 ^^^^^^^^^^^^^^^^^^^^
 
-CSS'nin yanı sıra, Scrapy seçiciler de XPath ifadelerini kullanmayı destekler:
+CSS'nin yanı sıra, Scrapy seçiciler de XPath ifadelerini kullanmayı destekler::
 
 >>> response.xpath('//title')
 [<Selector xpath='//title' data='<title>Quotes to Scrape</title>'>]
@@ -281,7 +281,7 @@ Alıntılar ve yazarlar çıkarılıyor
 
 Artık seçim ve çıkarma hakkında biraz bilgi sahibi olduğunuza göre, web sayfasından alıntıları çıkarmak için kodu yazarak örümceğimizi tamamlayalım.
 
-https://quotes.toscrape.com her alıntı şu şekilde görünen HTML öğeleriyle temsil edilir:
+https://quotes.toscrape.com her alıntı şu şekilde görünen HTML öğeleriyle temsil edilir::
 
 .. code-block:: html
 
@@ -301,11 +301,11 @@ https://quotes.toscrape.com her alıntı şu şekilde görünen HTML öğeleriyl
         </div>
     </div>
 
-İstediğimiz verileri nasıl çıkaracağımızı öğrenmek için sıyrık kabuğu açalım ve biraz oynayalım:
+İstediğimiz verileri nasıl çıkaracağımızı öğrenmek için sıyrık kabuğu açalım ve biraz oynayalım::
 
     $ scrapy shell 'http://quotes.toscrape.com'
 
-Alıntı HTML öğeleri için seçicilerin bir listesini aşağıdakilerle alırız:
+Alıntı HTML öğeleri için seçicilerin bir listesini aşağıdakilerle alırız::
 
 >>> response.css("div.quote")
 [<Selector xpath="descendant-or-self::div[@class and contains(concat(' ', normalize-space(@class), ' '), ' quote ')]" data='<div class="quote" itemscope itemtype...'>,
@@ -316,7 +316,7 @@ Yukarıdaki sorgu tarafından döndürülen seçicilerin her biri, alt öğeleri
 
 >>> quote = response.css("div.quote")[0]
 
-Şimdi, yeni oluşturduğumuz alıntı nesnesini kullanarak bu alıntıdan metin, yazar ve etiketleri çıkaralım:
+Şimdi, yeni oluşturduğumuz alıntı nesnesini kullanarak bu alıntıdan metin, yazar ve etiketleri çıkaralım::
 
 >>> text = quote.css("span.text::text").get()
 >>> text
@@ -325,7 +325,7 @@ Yukarıdaki sorgu tarafından döndürülen seçicilerin her biri, alt öğeleri
 >>> author
 'Albert Einstein'
 
-Etiketlerin dizelerin bir listesi olduğu göz önüne alındığında, hepsini almak için .getall () yöntemini kullanabiliriz:
+Etiketlerin dizelerin bir listesi olduğu göz önüne alındığında, hepsini almak için .getall () yöntemini kullanabiliriz::
 
 >>> tags = quote.css("div.tags a.tag::text").getall()
 >>> tags
@@ -335,7 +335,7 @@ Etiketlerin dizelerin bir listesi olduğu göz önüne alındığında, hepsini 
 
   from sys import version_info
 
-Her biti nasıl çıkaracağımızı anladıktan sonra, artık tüm alıntı öğelerini yineleyebilir ve bir Python sözlüğünde bir araya getirebiliriz:
+Her biti nasıl çıkaracağımızı anladıktan sonra, artık tüm alıntı öğelerini yineleyebilir ve bir Python sözlüğünde bir araya getirebiliriz::
 
 >>> for quote in response.css("div.quote"):
 ...     text = quote.css("span.text::text").get()
@@ -351,7 +351,7 @@ Spider'ımızdaki verilerin çıkarılması
 
 Spider'ımıza dönelim. Şimdiye kadar, özellikle herhangi bir veri çıkarmaz, sadece tüm HTML sayfasını yerel bir dosyaya kaydeder. Yukarıdaki çıkarma mantığını örümceğimize entegre edelim.
 
-Bir Scrapy Spider'ı tipik olarak sayfadan çıkarılan verileri içeren birçok sözlük üretir. Bunu yapmak için, aşağıda görebileceğiniz gibi, geri çağrıda Python anahtar kelimesini kullanıyoruz:
+Bir Scrapy Spider'ı tipik olarak sayfadan çıkarılan verileri içeren birçok sözlük üretir. Bunu yapmak için, aşağıda görebileceğiniz gibi, geri çağrıda Python anahtar kelimesini kullanıyoruz::
 
     import scrapy
 
@@ -370,7 +370,7 @@ Bir Scrapy Spider'ı tipik olarak sayfadan çıkarılan verileri içeren birçok
                     'author': quote.css('small.author::text').get(),
                     'tags': quote.css('div.tags a.tag::text').getall(),
                 }
-Bu Spider'ı çalıştırırsanız, çıkarılan verileri günlükle birlikte çıkarır:
+Bu Spider'ı çalıştırırsanız, çıkarılan verileri günlükle birlikte çıkarır::
 
     2016-09-19 18:57:19 [scrapy.core.scraper] DEBUG: Scraped from <200 http://quotes.toscrape.com/page/1/>
     {'tags': ['life', 'love'], 'author': 'André Gide', 'text': '“It is better to be hated for what you are than to be loved for what you are not.”'}
@@ -383,13 +383,13 @@ Bu Spider'ı çalıştırırsanız, çıkarılan verileri günlükle birlikte ç
 Kazınan verilerin depolanması
 ========================
 
-Kazınan verileri saklamanın en basit yolu, aşağıdaki komutla Feed dışa aktarımlarını kullanmaktır:
+Kazınan verileri saklamanın en basit yolu, aşağıdaki komutla Feed dışa aktarımlarını kullanmaktır::
 
     scrapy crawl quotes -O quotes.json
 
 Bu, Json da serileştirilmiş tüm kazınmış öğeleri içeren bir quotes.json dosyası oluşturur.
 
--O komut satırı anahtarı varolan tüm dosyaların üzerine yazar; varolan herhangi bir dosyaya yeni içerik eklemek için -o kullanın. Ancak, bir JSON dosyasına eklenmesi dosya içeriğini geçersiz kılar. Bir dosyaya eklenirken, JSON Lines gibi farklı bir serileştirme formatı kullanmayı düşünün:
+-O komut satırı anahtarı varolan tüm dosyaların üzerine yazar; varolan herhangi bir dosyaya yeni içerik eklemek için -o kullanın. Ancak, bir JSON dosyasına eklenmesi dosya içeriğini geçersiz kılar. Bir dosyaya eklenirken, JSON Lines gibi farklı bir serileştirme formatı kullanmayı düşünün::
 
     scrapy crawl quotes -o quotes.jl
 JSON Lines formatı kullanışlıdır, çünkü akışa benzer, yeni kayıtları kolayca ekleyebilirsiniz. İki kez koştuğunuzda aynı JSON sorunu yoktur. Ayrıca, her kayıt ayrı bir satır olduğundan, büyük dosyaları belleğe her şeyi sığdırmak zorunda kalmadan işleyebilirsiniz, komut satırında bunu yapmaya yardımcı olacak JQ gibi araçlar vardır.
@@ -407,7 +407,7 @@ Diyelim ki, https://quotes.toscrape.com ilk iki sayfasındaki şeyleri kazımak 
 
 Artık sayfalardan nasıl veri çıkaracağınızı bildiğinize göre, onlardan bağlantıları nasıl takip edeceğinize bakalım.
 
-İlk iş, takip etmek istediğimiz sayfanın bağlantısını çıkarmak. Sayfamızı incelerken, aşağıdaki işaretlemeyi içeren bir sonraki sayfaya bağlantı olduğunu görebiliriz:
+İlk iş, takip etmek istediğimiz sayfanın bağlantısını çıkarmak. Sayfamızı incelerken, aşağıdaki işaretlemeyi içeren bir sonraki sayfaya bağlantı olduğunu görebiliriz::
 
 .. code-block:: html
 
@@ -422,17 +422,17 @@ Shell'den çıkarmayı deneyebiliriz.
 >>> response.css('li.next a').get()
 '<a href="/page/2/">Next <span aria-hidden="true">→</span></a>'
 
-Bu, çapa öğesini alır, ancak href niteliğini istiyoruz. Bunun için Scrapy, nitelik içeriğini seçmenize olanak tanıyan bir CSS uzantısını destekler:
+Bu, çapa öğesini alır, ancak href niteliğini istiyoruz. Bunun için Scrapy, nitelik içeriğini seçmenize olanak tanıyan bir CSS uzantısını destekler::
 
 >>> response.css('li.next a::attr(href)').get()
 '/page/2/'
 
-Ayrıca bir özellik de mevcuttur (bkz. Daha fazlası için öğe niteliklerini seçme):
+Ayrıca bir özellik de mevcuttur (bkz. Daha fazlası için öğe niteliklerini seçme)::
 
 >>> response.css('li.next a').attrib['href']
 '/page/2/'
 
-Şimdi Spider'ımızın bir sonraki sayfaya olan bağlantıyı tekrarlayan bir şekilde takip etmek için değiştirildiğini ve ondan veri çıkardığını görelim:
+Şimdi Spider'ımızın bir sonraki sayfaya olan bağlantıyı tekrarlayan bir şekilde takip etmek için değiştirildiğini ve ondan veri çıkardığını görelim::
 
     import scrapy
 
@@ -518,7 +518,7 @@ veya daha da kısaltmak:
 Daha fazla örnek ve desen
 --------------------------
 
-İşte bu kez yazar bilgilerini kazımak için geri aramaları ve aşağıdaki bağlantıları gösteren başka bir örümcek:
+İşte bu kez yazar bilgilerini kazımak için geri aramaları ve aşağıdaki bağlantıları gösteren başka bir örümcek::
 
     import scrapy
 
@@ -562,13 +562,13 @@ Ayrıca, ortak bir desen, geri çağrılara ek veri iletmek için bir hile kulla
 Spider argümanlarını kullanma
 ======================
 
-Spider'larınıza komut satırı argümanlarını çalıştırırken -a seçeneğini kullanarak sağlayabilirsiniz:
+Spider'larınıza komut satırı argümanlarını çalıştırırken -a seçeneğini kullanarak sağlayabilirsiniz::
 
     scrapy crawl quotes -O quotes-humor.json -a tag=humor
 
 Bu argümanlar Örümceğin __ init __ yöntemine aktarılır ve varsayılan olarak örümcek nitelikleri haline gelir.
 
-Bu örnekte, etiket argümanı için sağlanan değer self.tag. Bunu, örümceğinizin yalnızca belirli bir etiketle alıntılar getirmesini sağlamak için kullanabilir ve URL'yi argümana göre oluşturabilirsiniz:
+Bu örnekte, etiket argümanı için sağlanan değer self.tag. Bunu, örümceğinizin yalnızca belirli bir etiketle alıntılar getirmesini sağlamak için kullanabilir ve URL'yi argümana göre oluşturabilirsiniz::
 
     import scrapy
 
