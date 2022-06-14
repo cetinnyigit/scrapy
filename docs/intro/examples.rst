@@ -1,20 +1,12 @@
 .. _intro-examples:
 
 ========
-Examples
+Örnekler
 ========
 
-The best way to learn is with examples, and Scrapy is no exception. For this
-reason, there is an example Scrapy project named quotesbot_, that you can use to
-play and learn more about Scrapy. It contains two spiders for
-http://quotes.toscrape.com, one using CSS selectors and another one using XPath
-expressions.
+Öğrenmenin en iyi yolu örneklerdir ve Scrapy bir istisna değildir. Bu nedenle, Scrapy hakkında daha fazla bilgi edinmek ve oynamak için kullanabileceğiniz tırnak botu adında bir örnek Scrapy projesi var. Biri CSS seçicileri, diğeri XPath ifadeleri kullanan https://quotes.toscrape.com için iki örümcek içerir.
 
-The quotesbot_ project is available at: https://github.com/scrapy/quotesbot.
-You can find more information about it in the project's README.
+Alıntı botu projesine şu adresten ulaşılabilir: https://github.com/scrapy/quotesbot. Bu konuda daha fazla bilgiyi projenin READme sinde bulabilirsiniz.
 
-If you're familiar with git, you can checkout the code. Otherwise you can
-download the project as a zip file by clicking
-`here <https://github.com/scrapy/quotesbot/archive/master.zip>`_.
-
+Git'e aşinaysanız, kodu kontrol edebilirsiniz. Aksi takdirde buraya tıklayarak projeyi zip dosyası olarak indirebilirsiniz.
 .. _quotesbot: https://github.com/scrapy/quotesbot
