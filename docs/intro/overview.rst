@@ -4,20 +4,18 @@
 Bir bakışta Scrapy
 ==================
 
-Scrapy (/ˈskreɪpaɪ/) is an application framework for crawling web sites and extracting
-structured data which can be used for a wide range of useful applications, like
-data mining, information processing or historical archival.
+Scrapy, veri madenciliği, bilgi işleme veya geçmiş arşivleme gibi çok çeşitli faydalı uygulamalar için kullanılabilen 
+web sitelerini taramak ve yapılandırılmış verileri çıkarmak için bir framework çerçevesidir.
 
-Even though Scrapy was originally designed for `web scraping`_, it can also be
-used to extract data using APIs (such as `Amazon Associates Web Services`_) or
-as a general purpose web crawler.
+Scrapy başlangıçta `web scraping`_ için tasarlanmış olsa da , API'leri ( Amazon Associates Web Services gibi ) 
+kullanarak veya genel amaçlı bir web tarayıcısı olarak veri çıkarmak için de kullanılabilir .
 
 
-Walk-through of an example spider
+Spider Örneğini Gözden Geçirelim
 =================================
 
-In order to show you what Scrapy brings to the table, we'll walk you through an
-example of a Scrapy Spider using the simplest way to run a spider.
+Scrapy'nin masaya ne getirdiğini göstermek için, 
+bir spider çalıştırmak için en basit yolu kullanarak bir Scrapy Spider örneğinden geçeceğiz.
 
 Here's the code for a spider that scrapes famous quotes from website
 http://quotes.toscrape.com, following the pagination::
@@ -42,13 +40,13 @@ http://quotes.toscrape.com, following the pagination::
             if next_page is not None:
                 yield response.follow(next_page, self.parse)
 
-Put this in a text file, name it to something like ``quotes_spider.py``
-and run the spider using the :command:`runspider` command::
+Bunu bir metin dosyasına koyun, buna benzer bir ad verin 
+quotes_spider.py ve şu :command:`runspider` command:: komutu kullanarak Spider’ı çalıştırın:
 
     scrapy runspider quotes_spider.py -o quotes.jl
 
-When this finishes you will have in the ``quotes.jl`` file a list of the
-quotes in JSON Lines format, containing text and author, looking like this::
+Bu bittiğinde, quotes.jl dosyada metin ve yazar içeren JSON Lines 
+formatında aşağıdaki gibi görünen alıntıların bir listesi olacaktır::
 
     {"author": "Jane Austen", "text": "\u201cThe person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.\u201d"}
     {"author": "Steve Martin", "text": "\u201cA day without sunshine is like, you know, night.\u201d"}
@@ -56,97 +54,54 @@ quotes in JSON Lines format, containing text and author, looking like this::
     ...
 
 
-What just happened?
+Az Önce Ne Yaptık?
 -------------------
 
-When you ran the command ``scrapy runspider quotes_spider.py``, Scrapy looked for a
-Spider definition inside it and ran it through its crawler engine.
+Komutu çalıştırdığınızda, Scrapy içinde bir Spider tanımı aradı 
+ve onu tarayıcı motorunda çalıştırdı. Scrapy runspider quotes_spider.py
 
-The crawl started by making requests to the URLs defined in the ``start_urls``
-attribute (in this case, only the URL for quotes in *humor* category)
-and called the default callback method ``parse``, passing the response object as
-an argument. In the ``parse`` callback, we loop through the quote elements
-using a CSS Selector, yield a Python dict with the extracted quote text and author,
-look for a link to the next page and schedule another request using the same
-``parse`` method as callback.
+Tarama, start_urls öznitelikte tanımlanan URL'lere (bu durumda, yalnızca humor kategorisindeki tırnakların URL'si) isteklerde bulunarak başladı parse ve yanıt nesnesini bir argüman olarak ileterek varsayılan geri arama yöntemini çağırdı. Parse Geri aramada, bir CSS Seçici kullanarak alıntı öğeleri arasında dolaşıyoruz, ayıklanan alıntı metni ve yazar ile bir Python diktisi oluşturuyoruz, sonraki sayfaya bir bağlantı arıyoruz ve geri arama ile aynı parse yöntemi kullanarak başka bir istek planlıyoruz.
 
-Here you notice one of the main advantages about Scrapy: requests are
-:ref:`scheduled and processed asynchronously <topics-architecture>`.  This
-means that Scrapy doesn't need to wait for a request to be finished and
-processed, it can send another request or do other things in the meantime. This
-also means that other requests can keep going even if some request fails or an
-error happens while handling it.
+Burada, Scrapy'nin ana avantajlarından birini fark edeceksiniz: istekler zaman uyumsuz olarak planlanır ve işlenir. Bu, Scrapy'nin bir isteğin tamamlanmasını ve işlenmesini beklemesine gerek olmadığı, bu arada başka bir istek gönderebileceği veya başka şeyler yapabileceği anlamına gelir. Bu ayrıca, bazı istekler başarısız olsa veya işlenirken bir hata meydana gelse bile diğer isteklerin devam edebileceği anlamına gelir.
 
-While this enables you to do very fast crawls (sending multiple concurrent
-requests at the same time, in a fault-tolerant way) Scrapy also gives you
-control over the politeness of the crawl through :ref:`a few settings
-<topics-settings-ref>`. You can do things like setting a download delay between
-each request, limiting amount of concurrent requests per domain or per IP, and
-even :ref:`using an auto-throttling extension <topics-autothrottle>` that tries
-to figure out these automatically.
+Bu, çok hızlı taramalar yapmanızı sağlarken (aynı anda birden fazla eşzamanlı istek gönderme, hataya dayanıklı bir şekilde) Scrapy ayrıca birkaç ayar aracılığıyla taramanın nezaketi üzerinde kontrol sahibi olmanızı sağlar. Her istek arasında bir indirme gecikmesi ayarlamak, etki alanı veya IP başına eşzamanlı istek miktarını sınırlamak ve hatta bunları otomatik olarak bulmaya çalışan bir otomatik kısıtlama uzantısı kullanmak gibi şeyler yapabilirsiniz.
 
 .. note::
 
-    This is using :ref:`feed exports <topics-feed-exports>` to generate the
-    JSON file, you can easily change the export format (XML or CSV, for example) or the
-    storage backend (FTP or `Amazon S3`_, for example).  You can also write an
-    :ref:`item pipeline <topics-item-pipeline>` to store the items in a database.
+    Bu, JSON dosyasını oluşturmak için feed dışa aktarmalarını kullanır, dışa aktarma biçimini (örneğin XML veya CSV) veya depolama arka ucunu (örneğin FTP veya Amazon S3) kolayca değiştirebilirsiniz. Öğeleri bir veritabınında depolamak için bir öğe ardışık düzen de yazabilirsiniz
 
 
 .. _topics-whatelse:
 
-What else?
+Başka Neler var?
 ==========
 
-You've seen how to extract and store items from a website using Scrapy, but
-this is just the surface. Scrapy provides a lot of powerful features for making
-scraping easy and efficient, such as:
+Scrapy kullanarak bir web sitesinden öğelerin nasıl çıkarılacağını ve saklanacağını gördünüz, ancak bu sadece yüzeyi. Scrapy, kazımayı kolay ve verimli hale getirmek için birçok güçlü özellik sunar, örneğin:
 
-* Built-in support for :ref:`selecting and extracting <topics-selectors>` data
-  from HTML/XML sources using extended CSS selectors and XPath expressions,
-  with helper methods to extract using regular expressions.
+* Normal ifadeleri kullanarak ayıklamak için yardımcı yöntemlerle, genişletilmiş CSS seçicileri ve XPath ifadeleri kullanarak HTML/XML kaynaklarından veri seçme ve ayıklama için yerleşik destek sunar.
 
-* An :ref:`interactive shell console <topics-shell>` (IPython aware) for trying
-  out the CSS and XPath expressions to scrape data, very useful when writing or
-  debugging your spiders.
+* Verileri sıyırmak için CSS ve XPath ifadelerini denemek için etkileşimli bir kabuk konsolu, spider’ları yazarken veya hatalarını ayıklarken çok kullanışlıdır. 
 
-* Built-in support for :ref:`generating feed exports <topics-feed-exports>` in
-  multiple formats (JSON, CSV, XML) and storing them in multiple backends (FTP,
-  S3, local filesystem)
+* Birden çok biçimde besleme dışa aktarmaları oluşturmak (JSON, CSV, XML) ve bunları birden çok arka uçta depolamak için yerleşik destek (FTP, S3, local filesystem)
 
-* Robust encoding support and auto-detection, for dealing with foreign,
-  non-standard and broken encoding declarations.
+* Yabancı, standart dışı ve bozuk kodlama bildirimleriyle başa çıkmak için güçlü kodlama desteği ve otomatik algılama.
 
-* :ref:`Strong extensibility support <extending-scrapy>`, allowing you to plug
-  in your own functionality using :ref:`signals <topics-signals>` and a
-  well-defined API (middlewares, :ref:`extensions <topics-extensions>`, and
-  :ref:`pipelines <topics-item-pipeline>`).
+* Güçlü genişletilebilirlik desteği ve iyi tanımlanmış bir API'yi (Middleware, extensions ve pipelines) kullanarak kendi işlevselliğinizi eklemenize olanak tanır.
 
-* Wide range of built-in extensions and middlewares for handling:
+* Kullanım için çok çeşitli yerleşik uzantılar ve ara yazılımlar:
 
-  - cookies and session handling
-  - HTTP features like compression, authentication, caching
-  - user-agent spoofing
+  - Çerezler ve oturum yönetimi
+  - Sıkıştırma, kimlik doğrulama, önbelleğe alma gibi HTTP özellikleri
+  - Kullanıcı aracısı sahtekarlığı
   - robots.txt
-  - crawl depth restriction
-  - and more
+  - Tarama derinliği kısıtlaması
 
-* A :ref:`Telnet console <topics-telnetconsole>` for hooking into a Python
-  console running inside your Scrapy process, to introspect and debug your
-  crawler
+  - Ve dahası
 
-* Plus other goodies like reusable spiders to crawl sites from `Sitemaps`_ and
-  XML/CSV feeds, a media pipeline for :ref:`automatically downloading images
-  <topics-media-pipeline>` (or any other media) associated with the scraped
-  items, a caching DNS resolver, and much more!
-
-What's next?
+Sırada Ne Var?
 ============
 
-The next steps for you are to :ref:`install Scrapy <intro-install>`,
-:ref:`follow through the tutorial <intro-tutorial>` to learn how to create
-a full-blown Scrapy project and `join the community`_. Thanks for your
-interest!
+Sizin için sonraki adımlar, Scrapy'yi kurmak, tam gelişmiş bir Scrapy projesinin nasıl oluşturulacağını öğrenmek için öğreticiyi takip etmeye devam edin. İlginiz İçin Teşekkürler!
 
 .. _join the community: https://scrapy.org/community/
 .. _web scraping: https://en.wikipedia.org/wiki/Web_scraping
